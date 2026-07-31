@@ -1,0 +1,60 @@
+<html>
+    <head>
+    </head>
+    <body>
+        
+        <a href="mailto:aisbstudentcouncil26@gmail.com"><h1>Click here to contact the student council</h1></a>
+        <br>
+        <p id="lastChecked">Email last checked: XX days ago, XX hours ago, XX minutes ago.</p>
+        <img id="backgroundimage" src="../Images/Telepon.jpg"></img>
+        
+        <script>
+            async function getData()
+            {
+                const response = await fetch("../data.json");
+                var data = null;
+                var UTCLastChecked = -1;
+
+                if (response.ok)
+                {
+                    data = await response.json();
+                    console.log(data);
+                    UTCLastChecked = data.lastcheckedUTC;
+                }
+                
+                const UTC=Math.floor(Date.now() / 1000);
+                
+                
+                var dif = UTC - UTCLastChecked;
+                //Note: will have to change this every time email is checked,
+                // could be a pain in the bum,
+                //might fix later
+                const checkedText = document.getElementById("lastChecked");
+
+                const lastcheckeddaysago = Math.floor(dif / 86400)
+                dif = dif - lastcheckeddaysago * 86400
+                const lastcheckedhoursago = Math.floor(dif / 3600)
+                dif = dif - lastcheckedhoursago * 3600
+                const lastcheckedminutesago = Math.floor(dif / 60)
+                dif = dif - lastcheckedminutesago * 60
+                
+                if (UTCLastChecked != -1)
+                {
+                    checkedText.innerHTML = "Email last checked: " + lastcheckeddaysago + " days ago, " + lastcheckedhoursago + " hours ago, " + lastcheckedminutesago + " minutes ago."
+                }
+            }
+            getData();
+            
+            
+           
+            
+        </script>
+        <link rel="stylesheet" href="../style.css">
+        <style>
+            body{
+                color: white;
+                -webkit-text-stroke: 0px black;
+            }
+        </style>
+    </body>
+</html>
