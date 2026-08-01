@@ -86,8 +86,18 @@
                         newPanel.appendChild(dn);
 
                         var timeText = document.createElement("h1")
-                        var DHM = getDHM(difTS);
-                        timeText.innerHTML = "Happening in " + DHM[0] + " days, " + DHM[1] + " hours, " + DHM[2] + " minutes."
+                        if (difTS > 0)
+                        {
+                            var DHM = getDHM(difTS);
+                            timeText.innerHTML = "Happening in " + DHM[0] + " days, " + DHM[1] + " hours, " + DHM[2] + " minutes."
+                        
+                        }
+                        else
+                        {
+                            var DHM = getDHM(-difTS);
+                            timeText.innerHTML = "Happened " + DHM[0] + " days, " + DHM[1] + " hours, " + DHM[2] + " minutes  ago."
+                        
+                        }
                         newPanel.appendChild(timeText);
 
                         var color = e.Color;
