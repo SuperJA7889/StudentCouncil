@@ -4,5 +4,11 @@
     "Description" : "bippity boppity boo vote jason thomas cochrane for president",
     "TableData": [{"test":"6:00am","test2": "You wake up prepared to vote Jason"}],
     "TableCellStyle": "background-color: rgb(0,255,0.25)",
+    "TableTitle": "Schedule"}},
+    {"SwimFest": {"DisplayName" : "Swim Fest",
+    "UnixTimeStamp":1785715200,"Color":"rgba(255,0,0.5)",
+    "Description" : "this is a test event",
+    "TableData": [{"test":"6:00am","test2": "You wake up prepared to do the swim fest"}],
+    "TableCellStyle": "background-color: rgba(255,0,0,0.5)",
     "TableTitle": "Schedule"}}
 }
