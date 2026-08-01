@@ -2,15 +2,155 @@
     <head>
     </head>
     <body>
+        <img id="backgroundimage" src="../Images/backgroundimage.jfif"></img>
         <h1>Events</h1>
-        <p>There are no events planned as of now.</p>
-        <img id="backgroundimage" src="../Images/backgroundimage.jfif"></img>
-        <img id="backgroundimage" src="../Images/backgroundimage.jfif"></img>
+         
+        
+        
         <style>
             body{
                 text-align: center;
             }
         </style>
         <link rel="stylesheet" href="../style.css">
+
+        <script>
+
+            function getDHM(difa)
+            {
+                var dif = difa;
+                const lastcheckeddaysago = Math.floor(dif / 86400)
+                dif = dif - lastcheckeddaysago * 86400
+                const lastcheckedhoursago = Math.floor(dif / 3600)
+                dif = dif - lastcheckedhoursago * 3600
+                const lastcheckedminutesago = Math.floor(dif / 60)
+                dif = dif - lastcheckedminutesago * 60
+                return [lastcheckeddaysago,lastcheckedhoursago,lastcheckedminutesago]
+            }
+
+            function createTable(data,appendTo,cellStyle) {
+                const table = document.createElement('table');
+                const tbody = document.createElement('tbody');
+
+                data.forEach(item => {
+                    console.log(item);
+                    const row = document.createElement('tr');
+                    Object.values(item).forEach(value => {
+                        console.log(value);
+                        const cell = document.createElement('td');
+                        cell.style = cellStyle;
+                        cell.textContent = value;
+                        row.appendChild(cell);
+                    });
+                    tbody.appendChild(row);
+                });
+
+                table.appendChild(tbody);
+                return table
+            }
+
+            async function getData()
+            {
+                const response = await fetch("events.json");
+                var data = null;
+                if (response.ok)
+                {
+                    data = await response.json();
+                }
+                // var data = {events : 
+                //     {StudentCouncilVoting: {DisplayName : "Student Council Voting",
+                //     UnixTimeStamp:1785715200,Color:"rgba(0,255,0,0.5)",
+                //     Description : "bippity boppity boo vote jason thomas cochrane for president",
+                //     TableData: [{test:"6:00am",test2: "You wake up prepared to vote Jason"},{test:"7:45am",test2:"The Voting Begins..."},{test:"8:10am",test2:"You have to go to stinky boring class"}],
+                //     TableCellStyle: "background-color: rgb(0,255,0.25)",
+                //     TableTitle: "Schedule"}}
+                // }
+                if (data != null)
+                {
+                    for(var a in data.events)
+                    {
+                        var e = data.events[a];
+                        var displayname = e.DisplayName;
+                        console.log(e);
+                        console.log(displayname);
+                        
+                        var UnixTimeStamp = e.UnixTimeStamp;
+                        var difTS = UnixTimeStamp - Math.floor(( Date.now()) / 1000)
+
+                        var newPanel = document.createElement("div");
+                        newPanel.className="panel"
+                        document.body.appendChild(newPanel)
+                        
+                        var dn = document.createElement("h1");
+                        dn.innerHTML = displayname;
+                        newPanel.appendChild(dn);
+
+                        var timeText = document.createElement("h1")
+                        var DHM = getDHM(difTS);
+                        timeText.innerHTML = "Happening in " + DHM[0] + " days, " + DHM[1] + " hours, " + DHM[2] + " minutes."
+                        newPanel.appendChild(timeText);
+
+                        var color = e.Color;
+                        var bgIMG = e.BackgroundImage
+                        if (bgIMG == null)
+                        {
+                            
+                            if (color != null)
+                            {
+                                newPanel.style = "background-color: " + color;
+                            }
+                            
+                        }
+                        else
+                        {
+                            newPanel.style="background-image: url(../Images/" + bgIMG + "); background-size: cover;background-position: center;background-repeat: no-repeat;"
+                        }
+                        
+                        
+                        var desc = e.Description;
+
+                        if (desc != null)
+                        {
+                            var ElementDesc = document.createElement("p");
+                            ElementDesc.innerHTML = desc;
+                            newPanel.appendChild(ElementDesc);
+                        }
+
+                        var tableData = e.TableData
+
+                        if (tableData != null)
+                        {
+                            var tableTitle = e.TableTitle;
+                            if (tableTitle != null)
+                            {
+                                tt = document.createElement("h1")
+                                tt.innerHTML = tableTitle;
+                                newPanel.appendChild(tt);
+                            }
+
+                            var cellStyle = e.TableCellStyle;
+                            
+                            
+                            if (cellStyle == null)
+                            {
+                                cellStyle = "border: 2px solid black"
+                            }
+                            table = createTable(tableData,newPanel,cellStyle);
+
+                            
+                            table.style = "width: 100%"
+                            
+                            
+                            newPanel.appendChild(table);
+                        }
+                        
+                        
+                        
+                    }
+                }
+            }
+            getData();
+        </script>
     </body>
+
 </html>
