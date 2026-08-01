@@ -2,13 +2,13 @@
     {"StudentCouncilVoting" : {"DisplayName" : "Student Council Voting",
     "UnixTimeStamp":1785715200,"Color":"rgba(0,255,0,0.5)",
     "Description" : "bippity boppity boo vote jason thomas cochrane for president",
-    "TableData": [{"test":"6:00am","test2": "You wake up prepared to vote Jason"}],
+    "TableData": [{"test":"6:00am","test2": "You wake up prepared to vote Jason"},{"test":"7:45am","test2": "The assembly starts"},{"test":"8:10am","test2": "The voting ends and everyone heads back to class."}],
     "TableCellStyle": "background-color: rgb(0,255,0,0.25)",
     "TableTitle": "Schedule"},
     "Swimfest" : {"DisplayName" : "Swim Fest",
     "UnixTimeStamp":1785715200,"Color":"rgba(255,0,0,0.5)",
     "Description" : "The swim fest is when you swim and swim like micheal klim",
-    "TableData": [{"test":"7:45am","test2": "Everyone is at school"}],
+    "TableData": [{"test":"7:45am","test2": "Everyone is at school"},{"test":"8:00am","test2": "First races start"},{"test":"12:00am","test2" : "Everyone goes home."}],
     "TableCellStyle": "background-color: rgb(255,0,0,0.5)",
     "TableTitle": "Schedule"}}
     
