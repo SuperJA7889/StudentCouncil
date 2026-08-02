@@ -4,6 +4,7 @@
     <body>
         <img id="backgroundimage" src="../Images/backgroundimage.jfif"></img>
         <h1>Events</h1>
+        <p>Over here you can see what the Student Council's plans are for certain events. You can suggest changes via the student council email.</p>
          
         
         
@@ -73,88 +74,108 @@
                         var displayname = e.DisplayName;
                         console.log(e);
                         console.log(displayname);
-                        
-                        var UnixTimeStamp = e.UnixTimeStamp;
-                        var difTS = UnixTimeStamp - Math.floor(( Date.now()) / 1000)
 
-                        var newPanel = document.createElement("div");
-                        newPanel.className="panel"
-                        document.body.appendChild(newPanel)
-                        
-                        var dn = document.createElement("h1");
-                        dn.innerHTML = displayname;
-                        newPanel.appendChild(dn);
+                        var show = e.Show
 
-                        var timeText = document.createElement("h1")
-                        if (difTS > 0)
+                        if (show != null && show != -1)
                         {
-                            var DHM = getDHM(difTS);
-                            timeText.innerHTML = "Happening in " + DHM[0] + " days, " + DHM[1] + " hours, " + DHM[2] + " minutes."
-                        
-                        }
-                        else
-                        {
-                            var DHM = getDHM(-difTS);
-                            timeText.innerHTML = "Happened " + DHM[0] + " days, " + DHM[1] + " hours, " + DHM[2] + " minutes  ago."
-                        
-                        }
-                        newPanel.appendChild(timeText);
+                         
+                            var UnixTimeStamp = e.UnixTimeStamp;
+                            var difTS = UnixTimeStamp - Math.floor(( Date.now()) / 1000)
 
-                        var color = e.Color;
-                        var bgIMG = e.BackgroundImage
-                        if (bgIMG == null)
-                        {
+                            var newPanel = document.createElement("div");
+                            newPanel.className="panel"
+                            document.body.appendChild(newPanel)
+
                             
-                            if (color != null)
+                            
+                            
+                            var dn = document.createElement("h1");
+                            dn.innerHTML = displayname;
+                            newPanel.appendChild(dn);
+
+                            
+                            if (UnixTimeStamp != null && UnixTimeStamp != -1)
                             {
-                                newPanel.style = "background-color: " + color;
+                                var timeText = document.createElement("h1")
+                                if (difTS > 0)
+                                {
+                                    var DHM = getDHM(difTS);
+                                    timeText.innerHTML = "Happening in " + DHM[0] + " days, " + DHM[1] + " hours, " + DHM[2] + " minutes."
+                                
+                                }
+                                else
+                                {
+                                    var DHM = getDHM(-difTS);
+                                    timeText.innerHTML = "Happened " + DHM[0] + " days, " + DHM[1] + " hours, " + DHM[2] + " minutes  ago."
+                                
+                                }
+                                newPanel.appendChild(timeText);
                             }
                             
-                        }
-                        else
-                        {
-                            newPanel.style="background-image: url(../Images/" + bgIMG + "); background-size: cover;background-position: center;background-repeat: no-repeat;"
-                        }
-                        
-                        
-                        var desc = e.Description;
 
-                        if (desc != null)
-                        {
-                            var ElementDesc = document.createElement("p");
-                            ElementDesc.innerHTML = desc;
-                            newPanel.appendChild(ElementDesc);
-                        }
-
-                        var tableData = e.TableData
-
-                        if (tableData != null)
-                        {
-                            var tableTitle = e.TableTitle;
-                            if (tableTitle != null)
+                            var color = e.Color;
+                            var bgIMG = e.BackgroundImage
+                            if (bgIMG == null)
                             {
-                                tt = document.createElement("h1")
-                                tt.innerHTML = tableTitle;
-                                newPanel.appendChild(tt);
+                                
+                                if (color != null)
+                                {
+                                    newPanel.style = "background-color: " + color;
+                                }
+                                
+                            }
+                            else
+                            {
+                                newPanel.style="background-image: url(" + bgIMG + "); background-size: cover;background-position: center;background-repeat: no-repeat;"
+                            }
+                            
+                            
+                            var desc = e.Description;
+
+                            if (desc != null)
+                            {
+                                var ElementDesc = document.createElement("p");
+                                ElementDesc.innerHTML = desc;
+                                newPanel.appendChild(ElementDesc);
                             }
 
-                            var cellStyle = e.TableCellStyle;
-                            
-                            
-                            if (cellStyle == null)
-                            {
-                                cellStyle = "border: 2px solid black"
-                            }
-                            table = createTable(tableData,newPanel,cellStyle);
+                            var tableData = e.TableData
 
+                            if (tableData != null)
+                            {
+                                var tableTitle = e.TableTitle;
+                                if (tableTitle != null)
+                                {
+                                    tt = document.createElement("h1")
+                                    tt.innerHTML = tableTitle;
+                                    newPanel.appendChild(tt);
+                                }
+
+                                var cellStyle = e.TableCellStyle;
+                                
+                                
+                                if (cellStyle == null)
+                                {
+                                    cellStyle = "border: 2px solid black"
+                                }
+                                table = createTable(tableData,newPanel,cellStyle);
+
+                                
+                                table.style = "width: 100%"
+                                
+                                
+                                newPanel.appendChild(table);
+                            }
                             
-                            table.style = "width: 100%"
-                            
-                            
-                            newPanel.appendChild(table);
+                            var tc = e.TextColor
+
+                            if (tc != null)
+                            {
+                                console.log(tc);
+                                newPanel.style.webkitTextFillColor = tc;
+                            }
                         }
-                        
-                        
                         
                     }
                 }
