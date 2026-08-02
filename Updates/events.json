@@ -1,8 +1,35 @@
 {"events" : 
-    {"StudentCouncilVoting" : {"DisplayName" : "Student Council Voting",
+    {
+    "SteamProject" : {"DisplayName" : "Steam Project",
+    "UnixTimeStamp":-1,"Color":"rgba(0,0,255,0.5)",
+    "Description" : "You make project for show judges and get award",
+    "TextColor" : "rgb(255,255,255)",
+    "Show":-1},
+        
+    "StudentCouncilVoting" : {"DisplayName" : "Student Council Voting",
     "UnixTimeStamp":1785715200,"Color":"rgba(0,255,0,0.5)",
     "Description" : "Vote Jason T.C for president",
     "TableData": [{"test":"7:45am","test2": "The assembly starts"},{"test":"8:10am","test2": "The voting ends and everyone heads back to class."}],
     "TableCellStyle": "background-color: rgb(0,255,0,0.25)",
-    "TableTitle": "Schedule"}}
+    "TableTitle": "Schedule",
+    "TextColor" : "rgb(0,0,0)",
+    "Show":"Y"},
+
+    "Test" : {"DisplayName" : "Test Event",
+    "UnixTimeStamp":1785715200,
+    "Color":"rgba(0,0,255,0.5)",
+    "Show":-1,
+    "Description" : "This is a test of the event system",
+    "BackgroundImage":"../Images/Telepon.jpg",
+    "TableData": [{"test":"7:45am","test2": "The assembly starts"},{"test":"8:10am","test2": "The test ends"}],
+    "TableCellStyle": "background-color: rgb(255,255,255 ,0.25)",
+    "TableTitle": "Schedule",
+    "TextColor" : "rgb(255,255,255)"},
+
+    "SwimFest" : {"DisplayName" : "Swim Fest",
+    "UnixTimeStamp":-1,
+    "Color":"rgba(0,0,255,0.5)",
+    "Description" : "No plans for the swim fest yet...",
+    "BackgroundImage":"https://media.istockphoto.com/id/1176790768/photo/swimming-pool.jpg?s=612x612&w=0&k=20&c=ADD3o0yOc4FqA_6Jl7IO6k_anhc4GECBTHWV3Kf4MCk="}
+    }
 }
